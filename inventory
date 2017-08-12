@@ -1,0 +1,11 @@
+
+# localhost
+localhost ansible_connection=local
+
+kuja ansible_host=192.168.1.12
+
+[pve]
+kuja
+
+[pci-passthrough]
+kuja
