@@ -1,0 +1,42 @@
+---
+- name: ensure iommu is enabled in default grub command line
+  lineinfile:
+    path: "/etc/default/grub"
+    regexp: '^(GRUB_CMD_LINUX_DEFAULT=.* quiet)"$'
+    line: '\1 intel_iommu=on"'
+  register: iommu_result
+
+- name: ensure vfio modules are loaded at boot
+  lineinfile:
+    path: "/etc/modules"
+    line: '{{ item }}'
+  register: vfio_result
+  with_items:
+    - vfio
+    - vfio_iommu_type1
+    - vfio_pci
+    - vfio_virqfd
+
+- name: ensure graphics drivers are blacklisted
+  lineinfile:
+    path: "/etc/modprobe.d/blacklist.conf"
+    line: 'blacklist {{ item }}'
+  register: drivers_result
+  with_items:
+    - radeon
+    - nouveau
+    - nvidia
+
+- name: ensure unsafe interrupts are allowed
+  lineinfile:
+    path: "/etc/modprobe.d/iommu_unsafe_interrupts.conf"
+    line: 'options vfio_iommu_type1 allow_unsafe_interrupts=1'
+  register: unsafe_interrupts_result
+
+- name: update grub configuration (need reboot if changes)
+  command: update-grub
+  register: pci_grub_result
+  when: (iommu_result|changed) or
+        (vfio_result|changed) or
+        (drivers_result|changed) or
+        (unsafe_interrupts_result|changed)
