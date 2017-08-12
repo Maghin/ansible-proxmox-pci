@@ -1,0 +1,16 @@
+---
+# Playbook pour configurer proxmox pour un home lab avec pci-passthrough
+
+- hosts: pve
+  tasks:
+    - name:
+    - name:
+    - name:
+    - name:
+
+- hosts: pci-passthrough
+  tasks:
+    - name:
+    - name:
+    - name:
+    - name:
