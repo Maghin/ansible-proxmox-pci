@@ -12,12 +12,9 @@ proxmox_containers: []
 proxmox_interfaces_file:     '/etc/network/interfaces.new'
 proxmox_interfaces_template: 'etc-network/interfaces.new.j2'
 
-proxmox_wan_interface: '' # 'eth0'
-proxmox_wan_address: ''
-proxmox_wan_netmask: ''
-proxmox_wan_gateway: ''
+proxmox_wan_interface: 'eth0'
 
-proxmox_lan_interface: '' # 'eth1'
+proxmox_lan_interface: ''
 
 proxmox_vmbr2_enabled: false
 proxmox_vmbr3_enabled: false
@@ -25,7 +22,8 @@ proxmox_vmbr3_enabled: false
 fail2ban_ssh_enabled: true
 fail2ban_proxmox_enabled: true
 
-proxmox_pveproxy_allow_from: "127.0.0.1,{{ ansible_default_ipv4.network }}/{{ 'X/ansible_default_ipv4.netmask' | ipaddr('prefix') }}"
+proxmox_restrict_webadmin: false
+proxmox_pveproxy_allow_from: '127.0.0.1'
 
 proxmox_isci_config_file: '/etc/iscsi/iscsid.conf'
 proxmox_isci_config_template: 'etc-iscsi/iscsid.conf.j2'
