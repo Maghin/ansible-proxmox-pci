@@ -25,7 +25,7 @@ proxmox_vmbr3_enabled: false
 fail2ban_ssh_enabled: true
 fail2ban_proxmox_enabled: true
 
-proxmox_pveproxy_allow_from: '127.0.0.1'
+proxmox_pveproxy_allow_from: "127.0.0.1,{{ ansible_default_ipv4.network }}/{{ 'X/ansible_default_ipv4.netmask' | ipaddr('prefix') }}"
 
 proxmox_isci_config_file: '/etc/iscsi/iscsid.conf'
 proxmox_isci_config_template: 'etc-iscsi/iscsid.conf.j2'
