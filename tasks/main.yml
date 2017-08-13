@@ -1,0 +1,17 @@
+---
+- include: requirements.yml
+
+- include: interfaces.yml
+
+- include: pveproxy.yml
+  when: proxmox_restrict_webadmin | default(false)
+
+- include: iscsi.yml
+
+- include: storage.yml
+
+- include: pcipassthrough.yml
+  when: proxmox_pcipassthrough_enabled | default(false)
+
+- include: reboot.yml
+  when: (network_result|changed) or (pci_grub_result|changed)
