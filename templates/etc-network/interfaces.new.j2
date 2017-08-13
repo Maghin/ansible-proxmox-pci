@@ -1,18 +1,26 @@
 auto lo
 iface lo inet loopback
 
-iface eth0 inet manual
+iface {{ proxmox_interfaces_wan }} inet manual
+
+{% if proxmox_interfaces_lan is defined %}
+iface {{ proxmox_interfaces_lan }} inet manual
+{% endif %}
 
 auto vmbr0
 iface vmbr0 inet dhcp
-    bridge_ports eth0
+    bridge_ports {{ proxmox_interfaces_wan }}
     bridge_stp off
     bridge_fd 0
 # WAN
 
 auto vmbr1
 iface vmbr1 inet manual
+{% if proxmox_interfaces_lan is defined %}
+    bridge_ports {{ proxmox_interfaces_lan }}
+{% else %}
     bridge_ports none
+{% endif %}
     bridge_stp off
     bridge_fd 0
 # LAN
