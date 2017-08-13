@@ -19,6 +19,9 @@ proxmox_wan_gateway: ''
 
 proxmox_lan_interface: '' # 'eth1'
 
+proxmox_vmbr2_enabled: false
+proxmox_vmbr3_enabled: false
+
 fail2ban_ssh_enabled: true
 fail2ban_proxmox_enabled: true
 
