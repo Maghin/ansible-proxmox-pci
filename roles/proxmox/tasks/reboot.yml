@@ -1,6 +1,6 @@
 ---
 - name: reboot machine
-  command: shutdown -r now "Ansible updates triggered"
+  command: sleep 2 && shutdown -r now "Ansible updates triggered"
   async: 1
   poll: 0
   ignore_errors: true
