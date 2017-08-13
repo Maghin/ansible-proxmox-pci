@@ -1,16 +1,27 @@
 ---
+- name: ensure pve-enterprise repo is disable (need a valid subscription)
+  file:
+    path: "/etc/apt/sources.list.d/pve-enterprise.list"
+    state: "absent"
+
 - name: run sysupgrade
   apt:
     update_cache: yes
     upgrade: dist
     cache_valid_time: 600
 
+- name: ensure valid subscription banner is disabled
+  lineinfile:
+    path: "/usr/share/pve-manager/js/pvemanagerlib.js"
+    regexp: "(^.*)data.status !== \'Active\'(.*$)"
+    line: '\1false\2'
+
 - name: remove unused os-prober
   apt:
     pkg: os-prober
     state: absent
 
-- name: install packages for Proxmox VE
+- name: install usefull packages for Proxmox VE
   apt:
     pkg: "{{ item }}"
     state: present
