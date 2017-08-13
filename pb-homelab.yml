@@ -1,11 +1,10 @@
 ---
+# Configure proxmox
 - name: PVE Configuration
   hosts: pve
   vars:
-    proxmox_interfaces_template: 'etc-network/interfaces.new.j2'
-    proxmox_interfaces_wan: 'enp0s31f6'
     proxmox_restrict_webadmin: true
-    proxmox_pveproxy_allow_from: '127.0.0.1,192.168.1.0/24'
+    proxmox_pveproxy_allow_from: "127.0.0.1,{{ ansible_}}"
     proxmox_pcipassthrough_enabled: true
     proxmox_storages:
     - id: backup
@@ -13,17 +12,21 @@
       path: /var/lib/vz/dump
       maxFiles: 1
       content: backup # images,iso,vztmpl,backup
-      nodes: myProxmoxHostname # hostname
+      node: "{{ api_node }}"
   roles:
     - proxmox
 
 # Create VM
-- name: HomeLab VM Creation
+- name: HomeLab VMs Creation
   hosts: homelab
   vars_prompt:
     - name   : "api_host"
       prompt : "PVE API host?: "
       default: "localhost"
+      private: no
+    - name   : "api_node"
+      prompt : "PVE API node?: "
+      default: "{{ ansible_nodename }}"
       private: no
     - name   : "api_user"
       prompt : "PVE API user?: "
@@ -38,7 +41,7 @@
         api_user    : "{{ api_user }}"
         api_password: "{{ api_password }}"
         api_host    : "{{ api_host }}"
-        node        : "kuja"
+        node        : "{{ api_node }}"
         vmid: 110
         name: lab-win10
         balloon: 0

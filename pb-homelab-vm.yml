@@ -4,10 +4,10 @@
     api_user    : "{{ api_user }}"
     api_password: "{{ api_password }}"
     api_host    : "{{ api_host }}"
-    node        : "kuja"
+    node        : "{{ api_node }}"
     vmid: 100
     name: lab-fir01
-    ballon: 1024
+    balloon: 1024
     bootdisk: virtio0
     cores: 1
     sockets: 1
@@ -29,10 +29,10 @@
     api_user    : "{{ api_user }}"
     api_password: "{{ api_password }}"
     api_host    : "{{ api_host }}"
-    node        : "kuja"
+    node        : "{{ api_node }}"
     vmid: 101
     name: lab-sto01
-    ballon: 0
+    balloon: 0
     bootdisk: virtio0
     cores: 1
     sockets: 2
@@ -52,10 +52,10 @@
     api_user    : "{{ api_user }}"
     api_password: "{{ api_password }}"
     api_host    : "{{ api_host }}"
-    node        : "kuja"
+    node        : "{{ api_node }}"
     vmid: 110
     name: lab-win10
-    ballon: 0
+    balloon: 0
     bios: seabios
     bootdisk: virtio0
     cores: 3

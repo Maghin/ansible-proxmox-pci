@@ -10,9 +10,9 @@ proxmox_lvg_iscsi_config: []
 proxmox_containers: []
 
 proxmox_interfaces_file:     '/etc/network/interfaces.new'
-proxmox_interfaces_template: ''
-proxmox_interfaces_wan: 'eth0'
-proxmox_interfaces_lan: ''
+proxmox_interfaces_template: 'etc-network/interfaces.new.j2'
+proxmox_wan_interface: '' # 'eth0'
+proxmox_lan_interface: '' # 'eth1'
 
 fail2ban_ssh_enabled: true
 fail2ban_proxmox_enabled: true
