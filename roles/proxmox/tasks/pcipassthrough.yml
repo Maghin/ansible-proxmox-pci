@@ -2,8 +2,9 @@
 - name: ensure iommu is enabled in default grub command line
   lineinfile:
     path: "/etc/default/grub"
-    regexp: '^(GRUB_CMD_LINUX_DEFAULT=.* quiet)"$'
-    line: '\1 intel_iommu=on"'
+    backrefs: true
+    regexp: '^#?(GRUB_CMDLINE_LINUX_DEFAULT=.*)quiet"$'
+    line: '\1quiet intel_iommu=on"'
   register: iommu_result
 
 - name: ensure vfio modules are loaded at boot
@@ -36,9 +37,11 @@
   register: unsafe_interrupts_result
 
 - name: update grub configuration (need reboot if changes)
-  command: update-grub
+  shell: update-grub
   register: pci_grub_result
-  when: (iommu_result|changed) or
-        (vfio_result|changed) or
-        (drivers_result|changed) or
-        (unsafe_interrupts_result|changed)
+  when: iommu_result | changed or
+        vfio_result | changed or
+        drivers_result | changed or
+        unsafe_interrupts_result | changed
+  failed_when: pci_grub_result.rc != 0
+  changed_when: pci_grub_result.rc == 0
