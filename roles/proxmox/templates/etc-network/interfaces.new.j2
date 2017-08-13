@@ -3,8 +3,8 @@ iface lo inet loopback
 
 iface {{ proxmox_wan_interface | default(ansible_default_ipv4.interface) }} inet manual
 
-{% if proxmox_interfaces_lan | length %}
-iface {{ proxmox_interfaces_lan }} inet manual
+{% if proxmox_lan_interface | length %}
+iface {{ proxmox_lan_interface }} inet manual
 {% endif %}
 
 auto vmbr0
