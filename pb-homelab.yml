@@ -2,6 +2,8 @@
 - name: PVE Configuration
   hosts: pve
   vars:
+    proxmox_interfaces_template: 'interfaces.new.j2'
+    proxmox_interfaces_wan: 'enp0s31f6'
     proxmox_restrict_webadmin: true
     proxmox_pveproxy_allow_from: '127.0.0.1,192.168.1.0/24'
     proxmox_pcipassthrough_enabled: true
