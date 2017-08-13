@@ -11,7 +11,12 @@ proxmox_containers: []
 
 proxmox_interfaces_file:     '/etc/network/interfaces.new'
 proxmox_interfaces_template: 'etc-network/interfaces.new.j2'
+
 proxmox_wan_interface: '' # 'eth0'
+proxmox_wan_address: ''
+proxmox_wan_netmask: ''
+proxmox_wan_gateway: ''
+
 proxmox_lan_interface: '' # 'eth1'
 
 fail2ban_ssh_enabled: true
