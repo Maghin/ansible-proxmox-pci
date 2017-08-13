@@ -1,0 +1,77 @@
+---
+- name: create pfSense virtual machine
+  proxmox_kvm:
+    api_user    : "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host    : "{{ api_host }}"
+    node        : "kuja"
+    vmid: 100
+    name: lab-fir01
+    ballon: 1024
+    bootdisk: virtio0
+    cores: 1
+    sockets: 1
+    vcpus: 1
+    memory: 2048
+    virtio:
+      virtio0: 'local-pve:16,format="raw",cache="writeback"'
+    ide:
+      ide2: 'local.iso="pfSence.iso",media="cdrom"'
+    ostype: l26
+    net:
+      net0: 'virtio,bridge="vmbr0"'
+      net1: 'virtio,bridge="vmbr1"'
+      net2: 'virtio,bridge="vmbr2"'
+      net3: 'virtio,bridge="vmbr3"'
+
+- name: create FreeNAS virtual machine
+  proxmox_kvm:
+    api_user    : "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host    : "{{ api_host }}"
+    node        : "kuja"
+    vmid: 101
+    name: lab-sto01
+    ballon: 0
+    bootdisk: virtio0
+    cores: 1
+    sockets: 2
+    vcpus: 2
+    memory: 4096
+    virtio:
+      virtio0: 'local-pve:16,format="raw",cache="writeback"'
+      virtio1: 'local-pve:32,format="raw",cache="writeback"'
+    ide:
+      ide2: 'local.iso="freeNAS.iso",media="cdrom"'
+    ostype: l26
+    net:
+      net0: 'virtio,bridge="vmbr1"'
+
+- name: create Windows 10 virtual machine
+  proxmox_kvm:
+    api_user    : "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host    : "{{ api_host }}"
+    node        : "kuja"
+    vmid: 110
+    name: lab-win10
+    ballon: 0
+    bios: seabios
+    bootdisk: virtio0
+    cores: 3
+    sockets: 2
+    vcpus: 4
+    cpu: host
+    kvm: 0
+    memory: 16384
+    machine: q35
+    hostpci:
+      hostpci0: 'host="01:00",pcie="0",rombar="1",x-vga="1"'
+    hotplug: disk,network,usb,memory,cpu
+    virtio:
+      virtio0: 'local-pve:64,format="raw",cache="writeback"'
+    ide:
+      ide2: 'local,iso="windows10.iso",media="cdrom"'
+    ostype: win8
+    net:
+      net0: 'e1000="1A:28:29:AE:00:01",bridge="vmbr1"'

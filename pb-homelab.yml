@@ -1,0 +1,34 @@
+---
+- name: PVE Configuration
+  hosts: pve
+  vars:
+    proxmox_restrict_webadmin: true
+    proxmox_pveproxy_allow_from: '192.168.1.0/24'
+    proxmox_pcipassthrough_enabled: true
+    proxmox_storages:
+    - id: backup
+      type: dir
+      path: /var/lib/vz/dump
+      maxFiles: 1
+      content: backup # images,iso,vztmpl,backup
+      nodes: myProxmoxHostname # hostname
+  roles:
+    - proxmox
+
+# Create VM
+- name: HomeLab VM Creation
+  hosts: homelab
+  vars_prompt:
+    - name   : "api_host"
+      prompt : "PVE API host?: "
+      default: "192.168.1.12"
+      private: no
+    - name   : "api_user"
+      prompt : "PVE API user?: "
+      default: "root@pam"
+      private: no
+    - name   : "api_password"
+      prompt : "PVE API password?: "
+      private: yes
+  tasks:
+    - include: pb-homelab-vm.yml

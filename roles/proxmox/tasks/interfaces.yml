@@ -4,7 +4,7 @@
     state: present
     dest: /etc/hosts
     regexp: '^{{ proxmox_eth0_ipv4 | default(ansible_default_ipv4.address)}}'
-    line: '{{ proxmox_eth0_ipv4 | default(ansible_default_ipv4.address) }} {{ proxmox_fqdn ~ ' ' | default('')}}{{ ansible_hostname }} pvelocalhost'
+    line: "{{ proxmox_eth0_ipv4 | default(ansible_default_ipv4.address) }} {{ proxmox_fqdn | default('') }} {{ ansible_hostname }} pvelocalhost"
 
 - name: Ensure hostname is not on the same line of localhost
   lineinfile:

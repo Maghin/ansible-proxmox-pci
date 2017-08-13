@@ -9,8 +9,8 @@ proxmox_lvg_iscsi_config: []
 
 proxmox_containers: []
 
-proxmox_interfaces_file:     /etc/network/interfaces.new
-proxmox_interfaces_template: etc-network/interfaces.new.j2
+proxmox_interfaces_file:     '/etc/network/interfaces.new'
+proxmox_interfaces_template: 'etc-network/interfaces.new.j2'
 proxmox_interfaces_wan: 'enp0s31f6'
 proxmox_interfaces_lan: ''
 

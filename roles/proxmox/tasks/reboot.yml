@@ -6,9 +6,7 @@
   ignore_errors: true
 
 - name: Waiting reboot...
-  local_action:
-    wait_for host: "{{ inventory_hostname }}"
-    state: started
+  wait_for_connection:
     delay: 30
     timeout: 300
 
