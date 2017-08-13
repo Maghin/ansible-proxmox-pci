@@ -6,7 +6,6 @@ proxmox_vmbr2_enabled: true
 proxmox_vmbr3_enabled: true
 
 proxmox_restrict_webadmin: true
-proxmox_pveproxy_allow_from: "127.0.0.1,{{ ansible_default_ipv4.network }}/{{ 'X/ansible_default_ipv4.netmask' | ipaddr('prefix') }}"
 
 proxmox_pcipassthrough_enabled: true
 
