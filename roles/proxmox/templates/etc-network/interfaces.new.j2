@@ -28,7 +28,7 @@ iface vmbr1 inet manual
     bridge_fd 0
 # LAN
 
-{% if proxmox_vmbr2_enabled | length %}
+{% if proxmox_vmbr2_enabled %}
 auto vmbr2
 iface vmbr2 inet manual
     bridge_ports none
@@ -37,7 +37,7 @@ iface vmbr2 inet manual
 # DMZ
 {% endif %}
 
-{% if proxmox_vmbr3_enabled | length %}
+{% if proxmox_vmbr3_enabled %}
 auto vmbr3
 iface vmbr3 inet manual
     bridge_ports none
