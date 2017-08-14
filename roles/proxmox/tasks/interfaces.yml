@@ -31,9 +31,15 @@
   tags:
     - nat
 
-- name: Configure network interfaces (need reboot if changes)
+- name: Upload network configuration file
   template:
     src:  "{{ proxmox_interfaces_template }}"
-    dest: "{{ proxmox_interfaces_file }}"
-  register: network_result
+    dest: "{{ proxmox_interfaces_file }}.ansible"
+  register: network_template_result
   when: proxmox_interfaces_template | length
+
+- name: Configure network interfaces (need reboot if changes)
+  command: cp -f {{ proxmox_interfaces_file }}.ansible {{ proxmox_interfaces_file }}
+  register: network_result
+  changed_when: true
+  when: proxmox_interfaces_template | changed
