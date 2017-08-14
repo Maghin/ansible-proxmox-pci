@@ -31,25 +31,21 @@
         api_password: "{{ api_password }}"
         api_host    : "{{ api_host }}"
         node        : "{{ api_node }}"
-        vmid: 110
-        name: lab-win10
-        balloon: 0
-        bios: seabios
-        bootdisk: virtio0
-        cores: 3
-        sockets: 2
-        vcpus: 4
-        cpu: host
-        kvm: 0
-        memory: 16384
-        machine: q35
-        hostpci:
-          hostpci0: 'host="01:00",pcie="0",rombar="1",x-vga="1"'
-        hotplug: disk,network,usb,memory,cpu
-        virtio:
-          virtio0: 'local-pve:64,format="raw",cache="writeback"'
-        ide:
-          ide2: 'local,iso="windows10.iso",media="cdrom"'
-        ostype: win8
-        net:
-          net0: 'e1000="1A:28:29:AE:00:01",bridge="vmbr1"'
+        vmid    : "110"
+        name    : "lab-win10"
+        balloon : "0"
+        bios    : "seabios"
+        bootdisk: "virtio0"
+        cores   : "3"
+        sockets : "2"
+        vcpus   : "4"
+        cpu     : "host"
+        kvm     : "0"
+        memory  : "16384"
+        machine : "q35"
+        ostype  : "win8"
+        hotplug : "disk,network,usb,memory,cpu"
+        virtio  : "{'virtio0':'local-pve:64,format=raw,cache=writeback'}"
+        ide     : "{'ide2':'local,iso=windows10.iso,media=cdrom'}"
+        net     : "{'net0':'e1000=1A:28:29:AE:00:01,bridge=vmbr1'}"
+        hostpci : "{'hostpci0':'host=01:00,pcie=0,rombar=1,x-vga=1'}"
