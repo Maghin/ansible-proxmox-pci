@@ -1,9 +1,0 @@
-# Sample
-
-kuja ansible_host=192.168.1.12 ansible_port=22 ansible_user=root
-
-[pve]
-kuja
-
-[homelab]
-kuja
