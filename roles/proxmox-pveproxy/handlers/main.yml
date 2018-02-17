@@ -1,5 +1,5 @@
 ---
-# handlers file for proxmox-pxeproxy
+# handlers file for proxmox-pveproxy
 
 - name: pveproxy restart
   service:

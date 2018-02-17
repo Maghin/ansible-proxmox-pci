@@ -1,5 +1,5 @@
 ---
-# tasks file for proxmox-pxeproxy
+# tasks file for proxmox-pveproxy
 
 - name: Create default configuration for pveproxy
   template:

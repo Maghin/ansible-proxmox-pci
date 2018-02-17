@@ -1,5 +1,5 @@
 ---
-# defaults file for proxmox-pxeproxy
+# defaults file for proxmox-pveproxy
 
 proxmox_pveproxy_restrict_webadmin: false
 proxmox_pveproxy_allow_from: '127.0.0.1'
