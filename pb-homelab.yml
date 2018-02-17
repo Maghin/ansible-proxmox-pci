@@ -3,8 +3,8 @@
 - name: PVE Configuration
   hosts: pve
   roles:
-    - proxmox-requirements
     - proxmox-license
+    - proxmox-requirements
     - proxmox-pveproxy
     - proxmox-interface
     - proxmox-pci
