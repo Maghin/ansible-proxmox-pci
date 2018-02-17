@@ -1,0 +1,4 @@
+---
+# defaults file for pve-storage
+
+pve_storages: []
