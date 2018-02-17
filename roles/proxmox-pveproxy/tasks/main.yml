@@ -3,7 +3,7 @@
 
 - name: Create default configuration for pveproxy
   template:
-    src: "etc-default/pveproxy"
+    src: "pveproxy.j2"
     dest: "/etc/default/pveproxy"
   notify: pveproxy restart
   when: proxmox_pveproxy_restrict_webadmin
