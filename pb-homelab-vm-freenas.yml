@@ -1,0 +1,23 @@
+---
+- name: create FreeNAS virtual machine
+  proxmox_kvm:
+    api_user    : "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    api_host    : "{{ api_host }}"
+    node        : "{{ api_node }}"
+    vmid: 101
+    name: lab-sto01
+    balloon: 0
+    bootdisk: virtio0
+    cores: 1
+    sockets: 2
+    vcpus: 2
+    memory: 4096
+    virtio:
+      virtio0: 'local-pve:16,format="raw",cache="writeback"'
+      virtio1: 'local-pve:32,format="raw",cache="writeback"'
+    ide:
+      ide2: 'local.iso="freeNAS.iso",media="cdrom"'
+    ostype: l26
+    net:
+      net0: 'virtio,bridge="vmbr1"'
