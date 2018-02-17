@@ -21,9 +21,9 @@
       hostpci0: 'host="01:00",pcie="0",rombar="1",x-vga="1"'
     hotplug: disk,network,usb,memory,cpu
     virtio:
-      virtio0: 'local-pve:64,format="raw",cache="writeback"'
+      virtio0: 'local-lvm:64,format="raw",cache="writeback"'
     ide:
-      ide2: 'local,iso="windows10.iso",media="cdrom"'
-    ostype: win8
+      ide2: 'local:iso/windows10.iso,media="cdrom"'
+    ostype: win10
     net:
       net0: 'e1000="1A:28:29:AE:00:01",bridge="vmbr1"'
