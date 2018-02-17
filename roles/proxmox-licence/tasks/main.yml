@@ -1,0 +1,7 @@
+---
+# tasks file for pve-licence
+
+- name: ensure pve-enterprise repo is disable (need a valid subscription)
+  file:
+    path: "/etc/apt/sources.list.d/pve-enterprise.list"
+    state: absent
