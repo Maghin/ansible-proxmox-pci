@@ -42,4 +42,4 @@
   command: cp -f {{ proxmox_interfaces_file }}.ansible {{ proxmox_interfaces_file }}
   register: network_result
   changed_when: true
-  when: proxmox_interfaces_template | changed
+  when: network_template_result | changed
