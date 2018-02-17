@@ -1,17 +1,2 @@
 ---
-# handlers file for proxmox
-
-- name: pveproxy restart
-  service:
-    name="pveproxy"
-    state="restarted"
-
-- name: open-iscsi restart
-  service:
-    name: 'open-iscsi'
-    state: 'restarted'
-
-- name: fail2ban restart
-  service:
-    name="fail2ban"
-    state="restarted"
+# handlers file for proxmox-pci

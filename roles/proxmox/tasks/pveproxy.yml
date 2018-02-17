@@ -1,6 +1,0 @@
----
-- name: Create default configuration for pveproxy
-  template:
-    src: "etc-default/pveproxy"
-    dest: "/etc/default/pveproxy"
-  notify: pveproxy restart
