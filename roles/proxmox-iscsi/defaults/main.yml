@@ -1,0 +1,14 @@
+---
+# defaults file for pve-iscsi
+
+proxmox_lvg_iscsi_config: []
+
+proxmox_isci_config_file: '/etc/iscsi/iscsid.conf'
+proxmox_isci_config_template: 'iscsid.conf.j2'
+proxmox_isci_config:
+  noop_out_interval: 5
+  noop_out_timeout: 5
+  replacement_timeout: 120
+  startup: 'manual'
+  HeaderDigest: 'None'
+  DataDigest: 'None'

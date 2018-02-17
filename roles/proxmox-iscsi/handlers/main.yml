@@ -1,0 +1,7 @@
+---
+# handlers file for pve-iscsi
+
+- name: open-iscsi restart
+  service:
+    name: open-iscsi
+    state: restarted
