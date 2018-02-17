@@ -1,0 +1,48 @@
+auto lo
+iface lo inet loopback
+
+iface {{ proxmox_wan_interface | default(ansible_default_ipv4.interface) }} inet manual
+
+{% if proxmox_lan_interface | length %}
+iface {{ proxmox_lan_interface }} inet manual
+{% endif %}
+
+auto vmbr0
+iface vmbr0 inet static
+    address {{ proxmox_wan_address | default(ansible_default_ipv4.address) }}
+    netmask {{ proxmox_wan_netmask | default(ansible_default_ipv4.netmask) }}
+    gateway {{ proxmox_wan_gateway | default(ansible_default_ipv4.gateway) }}
+    bridge_ports {{ proxmox_wan_interface | default(ansible_default_ipv4.interface) }}
+    bridge_stp off
+    bridge_fd 0
+# WAN
+
+auto vmbr1
+iface vmbr1 inet manual
+{% if proxmox_lan_interface | length %}
+    bridge_ports {{ proxmox_lan_interface }}
+{% else %}
+    bridge_ports none
+{% endif %}
+    bridge_stp off
+    bridge_fd 0
+# LAN
+
+{% if proxmox_vmbr2_enabled %}
+auto vmbr2
+iface vmbr2 inet manual
+    bridge_ports none
+    bridge_stp off
+    bridge_fd 0
+# DMZ
+{% endif %}
+
+{% if proxmox_vmbr3_enabled %}
+auto vmbr3
+iface vmbr3 inet manual
+    bridge_ports none
+    bridge_stp off
+    bridge_fd 0
+#SUP
+{% endif %}
+

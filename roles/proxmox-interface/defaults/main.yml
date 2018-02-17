@@ -1,0 +1,12 @@
+---
+# defaults file for pve-interface
+
+proxmox_interfaces_file:     '/etc/network/interfaces.new'
+proxmox_interfaces_template: 'etc-network/interfaces.new.j2'
+
+proxmox_wan_interface: 'eth0'
+
+proxmox_lan_interface: ''
+
+proxmox_vmbr2_enabled: false
+proxmox_vmbr3_enabled: false
