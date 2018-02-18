@@ -8,9 +8,9 @@
     vmid: 110
     name: lab-win10
     balloon: 0
-    bios: seabios
+    bios: ovmf
     bootdisk: virtio0
-    cores: 3
+    cores: 4
     sockets: 2
     vcpus: 4
     cpu: host
@@ -20,8 +20,8 @@
     hostpci:
       hostpci0: 'host="01:00",pcie="0",rombar="1",x-vga="1"'
     hotplug: disk,network,usb,memory,cpu
-    virtio:
-      virtio0: 'local-lvm:64,format="raw",cache="writeback"'
+    scsi:
+      scsi0: 'local-lvm:64,format="raw",cache="writeback"'
     ide:
       ide2: 'local:iso/windows10.iso,media="cdrom"'
     ostype: win10
