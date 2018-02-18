@@ -1,7 +1,15 @@
 ---
 # tasks file for pve-licence
 
+#- name: disable warning message (marche pas)
+#  lineinfile:
+#    state: present
+#    dest: /usr/share/pve-manager/js/pvemanagerlib.js
+#    regexp: "^(.*)data.status === \\'Active\\'(.*)"
+#    line: "\\1false\\2"
+#    backup: true
+
 - name: ensure pve-enterprise repo is disable (need a valid subscription)
   file:
-    path: "/etc/apt/sources.list.d/pve-enterprise.list"
     state: absent
+    path: "/etc/apt/sources.list.d/pve-enterprise.list"
