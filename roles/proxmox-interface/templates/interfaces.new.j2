@@ -15,7 +15,7 @@ iface vmbr0 inet static
     bridge_ports {{ proxmox_wan_interface | default(ansible_default_ipv4.interface) }}
     bridge_stp off
     bridge_fd 0
-# WAN
+# {{ proxmox_vmbr0_desc | default ("WAN") }}
 
 auto vmbr1
 iface vmbr1 inet manual
@@ -26,7 +26,7 @@ iface vmbr1 inet manual
 {% endif %}
     bridge_stp off
     bridge_fd 0
-# LAN
+# {{ proxmox_vmbr1_desc | default ("LAN")}}
 
 {% if proxmox_vmbr2_enabled %}
 auto vmbr2
@@ -34,7 +34,7 @@ iface vmbr2 inet manual
     bridge_ports none
     bridge_stp off
     bridge_fd 0
-# DMZ
+# {{ proxmox_vmbr2_desc | default ("OPT1") }}
 {% endif %}
 
 {% if proxmox_vmbr3_enabled %}
@@ -43,6 +43,5 @@ iface vmbr3 inet manual
     bridge_ports none
     bridge_stp off
     bridge_fd 0
-#SUP
+# {{ proxmox_vmbr3_desc | default ("OPT2") }}
 {% endif %}
-

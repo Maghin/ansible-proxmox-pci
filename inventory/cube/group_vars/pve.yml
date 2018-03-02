@@ -5,6 +5,7 @@ proxmox_fqdn: pomerium.shk
 proxmox_wan_interface: 'enp7s0'
 proxmox_lan_interface: 'enp0s31f6'
 proxmox_vmbr2_enabled: true
+proxmox_vmbr2_desc: 'DMZ'
 proxmox_vmbr3_enabled: true
 
 proxmox_pveproxy_restrict_webadmin: true
